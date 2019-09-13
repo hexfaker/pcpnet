@@ -1,0 +1,13 @@
+Bootstrap: docker
+From: nvidia/cuda:9.2-cudnn7-runtime-ubuntu18.04
+
+%environment
+    export LANG=C.UTF-8 LC_ALL=C.UTF-8
+
+%post
+  apt-get update
+  apt-get install -y python3-pip
+  pip3 install https://download.pytorch.org/whl/cu92/torch-0.4.1-cp36-cp36m-linux_x86_64.whl numpy scipy tensorboardX
+    
+%runscript
+   python3 $@
